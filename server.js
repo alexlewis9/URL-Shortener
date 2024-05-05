@@ -1,6 +1,7 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
+var bodyParser = require('body-parser');
 var sqlite3 = require('sqlite3').verbose();
 var crypto = require('crypto');
 
@@ -43,12 +44,9 @@ var template = `<!DOCTYPE html>
 
 var app = express();
 var server = http.Server(app);
-var bodyParser = require('body-parser');
-const e = require('express');
 
 app.set('port', port);
 app.use(express.static('static'));
-
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/', function(req, res) {
@@ -81,7 +79,7 @@ app.post('/shorten', function(req, res) {
                 </head>
                 <body>
                     <h1>URL Shortener</h1>
-                    <p>Sorry unable to shorten this URL.</p>
+                    <p>Sorry, unable to shorten this URL.</p>
                     <p><a href="/">Shorten a URL</a></p>
                 </body>
             </html>`);
